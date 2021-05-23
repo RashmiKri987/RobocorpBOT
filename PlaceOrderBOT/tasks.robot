@@ -25,6 +25,7 @@ Get CSV URL from user
 Open the robot order website
     #Get robot order URL from vault
     ${secret}=    Get Secret    robotorder_info
+    #Open Available Browser    https://robotsparebinindustries.com/#/robot-order
     Open Available Browser      ${secret}[order_url]
     Wait Until Page Contains Element    xpath://button[normalize-space()='OK']
 
@@ -35,6 +36,7 @@ Close the annoying modal
 *** Keywords ***
 Get orders
     [Arguments]     ${csv_url}
+    #Download    https://robotsparebinindustries.com/orders.csv    overwrite=True
     Download    ${csv_url}    overwrite=True
     ${table}=    Read Table From Csv    orders.csv   
     [RETURN]     ${table}
